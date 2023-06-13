@@ -1,28 +1,42 @@
-# aqui importo as bibliotecas
-import os
-import time
-from random import randint
+import os #importando biblioteca para aceitar comandos do terminal do sistema operacional
+import time #importando biblioteca para poder da um tempo antes de executar proxima acao
+from random import randint #importando biblioteca para gerar numeros pseudo aleatorios
 
-#menuzinho para mostrar do que se trata
+
 print("---\ntabuada de multiplicação\n---")
 
-#criando a função para o usuario jogar a tabuada 
+
 def tabuada():
-    numero = int(input("Qual é o valor a ser jogado? "))
-    while True: #loop para o usuario continuar jogando
-        aleatorio = randint(1, 10) #gera numero aleatoria entre 1 e 10
-        pergunta = int(input("Quanto é {} x {} ? ".format(numero, aleatorio))) #pergunta para o usuario a tabuada
-        if aleatorio * numero == pergunta: #condicao caso o usuario acertar
+    #usando try para impedir que o usuario insira valor invalido
+    try: 
+        numero_jogado = int(input("Qual é o valor a ser jogado? "))
+    except ValueError:
+        print("Digite um número válido")
+        tabuada()
+    #loop para o usuario continuar jogando
+    while True: 
+        fator_aleatorio = randint(1, 10) 
+        #usando try para impedir que o usuario insira valor invalido
+        try:
+            pergunta = int(input("Quanto é {} x {} ? ".format(numero_jogado, fator_aleatorio))) 
+        except ValueError:
+            print("Digite um número válido")
+            continue
+
+        #caso o usuario acerte a questao exibe uma mensagem dizendo que ele acertou e limpa a tela
+        if fator_aleatorio * numero_jogado == pergunta: 
             print("você acertou!")
             time.sleep(1)
-            os.system("cls")
-        else: #condicao caso o usuario errar
-            option = input("você errou - digite 'a' para jogar de novo ou 's' para sair ") 
-            if option == 's':
+            os.system('cls')
+        #caso o usuario erre ele pode sair do jogo ou jogar novamente
+        else: 
+            opcao = input("você errou - digite 'a' para jogar de novo ou 's' para sair ") 
+            if opcao == 's':
                 break
             else:
                 tabuada()
 
             
-#chamando a função criada
+#chamando a funcao
 tabuada()
+
