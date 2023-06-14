@@ -5,7 +5,7 @@ from random import randint #importando biblioteca para gerar numeros pseudo alea
 
 print("---\ntabuada de multiplicação\n---")
 
-
+#funcao do jogo da tabuada
 def tabuada():
     #usando try para impedir que o usuario insira valor invalido
     try: 
